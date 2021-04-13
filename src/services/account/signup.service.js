@@ -5,6 +5,7 @@ module.exports.signup = async (name, email, password) => {
     const verifyEmail = await usersRepository.get({ email });
     if (verifyEmail) {
         throw {
+            // arrumar mensagem de erro
             // se o email já foi criado, então não é possível cadastrar o usuário
             status: StatusCodes.CONFLICT,
             message: messages.found("user"),
