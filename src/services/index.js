@@ -3,6 +3,7 @@ const usersService = require("./users");
 const accountService = require("./account");
 const moviesService = require("./movies");
 const userUpdateService = require("./users");
+const listMoviesService = require("./movies");
 
 module.exports = {
   authService,
@@ -10,4 +11,5 @@ module.exports = {
   accountService,
   moviesService,
   userUpdateService,
+  listMoviesService,
 };
