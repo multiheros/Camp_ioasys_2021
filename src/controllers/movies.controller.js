@@ -5,6 +5,12 @@ const yup = require("yup");
 module.exports = {
   register: async (req, res) => {
     try {
+      const { isAdmin } = req.user;
+
+      if(!isAdmin) {
+        return res.status(StatusCodes.UNAUTHORIZED).end();
+      }
+      
       const schema = yup.object().shape({
         name: yup.string().required(),
         duration: yup.string().required(),
