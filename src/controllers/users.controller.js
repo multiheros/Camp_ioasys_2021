@@ -4,6 +4,12 @@ const { usersService } = require("../services");
 module.exports = {
   list: async (req, res) => {
     try {
+      const { isAdmin } = req.user;
+
+      if(!isAdmin) {
+        return res.status(StatusCodes.UNAUTHORIZED).end();
+      }
+
       const { name } = req.query;
       const response = await usersService.list({ name });
 
