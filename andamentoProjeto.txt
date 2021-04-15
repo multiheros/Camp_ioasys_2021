@@ -1,0 +1,11 @@
+Admin -> ainda não feito
+Cadastro usuário -> feito
+Edição usuário -> feito porém devo arrumar a mensagem de lançamento e criar um excessão para caso não achar o usuário da id
+Exclusão lógica usuário -> ainda não feito(ideia: criar um atributo no banco pra fazer esse trabalho)
+
+Cadastro de filmes -> feito
+Edição de filmes -> ainda não feito
+Exclusão lógica de filmes -> ainda não feito
+listagem de filmes -> feito porém deve colocar um filtro de pesquisa
+detalhe de filme -> ainda não feito, necessita criar um novo banco pra isso para relacionar user e movies N:N
+Voto -> não feito, precisa de um novo banco

@@ -2,13 +2,11 @@ const { StatusCodes } = require("http-status-codes");
 const { usersRepository } = require("../../repositories");
 
 module.exports.signup = async (name, email, password) => {
-    const verifyEmail = await usersRepository.get({ email });
-    if (verifyEmail) {
+    const Email = await usersRepository.get({ email });
+    if (Email) {
         throw {
-            // arrumar mensagem de erro
-            // se o email já foi criado, então não é possível cadastrar o usuário
             status: StatusCodes.CONFLICT,
-            message: messages.found("user"),
+            message: messages.alreadyExists("Email"),
         };
     }
 

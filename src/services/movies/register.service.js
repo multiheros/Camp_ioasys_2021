@@ -2,13 +2,11 @@ const { StatusCodes } = require("http-status-codes");
 const { moviesRepository } = require("../../repositories");
 
 module.exports.register = async (name, duration, release, description) => {
-    const movieExist = await moviesRepository.get({ name, release });
-    if (movieExist) {
+    const Movie = await moviesRepository.get({ name, release });
+    if (Movie) {
         throw {
-            // arrumar mensagem de erro
-            // se o email já foi criado, então não é possível cadastrar o usuário
             status: StatusCodes.CONFLICT,
-            message: messages.found("user"),
+            message: messages.alreadyExists("Movie"),
         };
     }
 
