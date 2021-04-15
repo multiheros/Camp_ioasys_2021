@@ -17,9 +17,6 @@ module.exports = {
       release: {
         type: Sequelize.DATE
       },
-      rate: {
-        type: Sequelize.FLOAT
-      },
       description: {
         type: Sequelize.STRING
       },

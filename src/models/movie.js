@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       duration: DataTypes.STRING,
       release: DataTypes.DATE,
-      rate: DataTypes.FLOAT,
       description: DataTypes.STRING,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,

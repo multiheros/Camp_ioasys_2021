@@ -1,12 +1,13 @@
 const { StatusCodes } = require("http-status-codes");
 const { usersRepository } = require("../../repositories");
+const { messages } = require("../../helpers");
 
 module.exports.signup = async (name, email, password) => {
     const Email = await usersRepository.get({ email });
     if (Email) {
         throw {
             status: StatusCodes.CONFLICT,
-            message: messages.alreadyExists("Email"),
+            message: messages.alreadyExists("email"),
         };
     }
 

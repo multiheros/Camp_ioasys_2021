@@ -1,15 +1,17 @@
 const authService = require("./auth");
 const usersService = require("./users");
-const accountService = require("./account");
+const signupService = require("./users");
 const moviesService = require("./movies");
 const userUpdateService = require("./users");
 const listMoviesService = require("./movies");
+const moviesUpdateService = require("./movies")
 
 module.exports = {
   authService,
   usersService,
-  accountService,
+  signupService,
   moviesService,
   userUpdateService,
   listMoviesService,
+  moviesUpdateService,
 };

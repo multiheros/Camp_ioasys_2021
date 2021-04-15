@@ -1,24 +1,26 @@
 const { StatusCodes } = require("http-status-codes");
 const { usersRepository } = require("../../repositories");
+const { messages } = require("../../helpers");
 
 module.exports.update = async (id, body) => {
+    const user = await usersRepository.getById(id);
+
+    if(!user) {
+        throw {
+            status: StatusCodes.NOT_FOUND,
+            message: messages.notFound("user"),
+        };
+    };
+
     const { email } = body;
-    if(email != null) {
+
+    if(email) {
         const Email = await usersRepository.get({ email });
         if (Email) {
             throw {
                 status: StatusCodes.CONFLICT,
-                message: messages.found("Email"),
+                message: messages.alreadyExists("email"),
             };
-        };
-    };
-    
-    const user = await usersRepository.getById(id);
-
-    if(user == null) {
-        throw {
-            status: StatusCodes.NOT_FOUND,
-            message: messages.notFound("user"),
         };
     };
 
