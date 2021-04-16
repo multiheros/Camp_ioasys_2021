@@ -7,6 +7,7 @@ const listMoviesService = require("./movies");
 const moviesUpdateService = require("./movies");
 const userVoteService = require("./users");
 const userRatingService = require("./users");
+const userDeactivateService = require("./users");
 
 module.exports = {
   authService,
@@ -18,4 +19,5 @@ module.exports = {
   moviesUpdateService,
   userVoteService,
   userRatingService,
+  userDeactivateService
 };

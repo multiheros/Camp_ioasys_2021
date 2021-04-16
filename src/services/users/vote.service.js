@@ -7,10 +7,7 @@ const { messages } = require("../../helpers");
 module.exports.vote = async (userId, body) => {
 
     const { movieId, vote } = body;
-    /*
-    console.log(userId);
-    console.log(movieId);
-    */
+
     if(vote < 0 | vote > 4) {
         throw {
           status: StatusCodes.REQUESTED_RANGE_NOT_SATISFIABLE,
@@ -36,9 +33,7 @@ module.exports.vote = async (userId, body) => {
         };
     };
 
-    const rating = await userMovieRepository.getMore(userId, movieId);
-
-    console.log(rating);
+    const rating = await userMovieRepository.get(userId, movieId);
 
     if(rating) {
         Object.assign(rating, body);

@@ -7,6 +7,7 @@ const listMoviesController = require("./listMovies.controller")
 const moviesUpdateController = require("./moviesUpdate.controller")
 const userVoteController = require("./userVote.controller")
 const userRatingController = require("./userRating.controller");
+const userDeactivateController = require("./userDeactivate.Controller");
 
 module.exports = {
   usersController,
@@ -17,5 +18,6 @@ module.exports = {
   listMoviesController,
   moviesUpdateController,
   userVoteController,
-  userRatingController
+  userRatingController,
+  userDeactivateController
 };
