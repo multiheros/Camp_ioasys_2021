@@ -3,7 +3,6 @@ const { moviesRepository } = require("../../repositories");
 const { messages } = require("../../helpers");
 
 module.exports.update = async (id, body) => {
-
     const idExist = await moviesRepository.get({ id });
 
     if(!idExist) {

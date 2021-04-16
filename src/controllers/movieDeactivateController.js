@@ -1,11 +1,16 @@
 const { StatusCodes } = require("http-status-codes");
-const { userDeactivateService } = require("../services");
+const { movieDeactivateService } = require("../services");
 
 module.exports = {
   deactivate: async (req, res) => {
     try {
-      const { id } = req.user;
-      const response = await userDeactivateService.deactivate(id);
+      const { isAdmin } = req.user;
+
+      if(!isAdmin) {
+        return res.status(StatusCodes.UNAUTHORIZED).end();
+      }
+      const { id } = req.body;
+      const response = await movieDeactivateService.deactivate(id);
 
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
