@@ -16,8 +16,9 @@ module.exports.register = async (name, duration, release, description) => {
         duration: duration, 
         release: release, 
         description: description,
-        created_at: new Date(),
-        updated_at: new Date(),
+        isActivated: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     };
 
     moviesRepository.create(movie);

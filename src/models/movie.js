@@ -7,13 +7,30 @@ module.exports = (sequelize, DataTypes) => {
       duration: DataTypes.STRING,
       release: DataTypes.DATE,
       description: DataTypes.STRING,
-      createdAt: DataTypes.DATE,
-      updatedAt: DataTypes.DATE,
+      deletedAt: {
+        type: DataTypes.DATE,
+        field: "deleted_at"
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        field: "created_at"
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        field: "updated_at"
+      },
     },
     {
       tableName: "movies",
-    }
+      paranoid: true,
+      timestamps: true
+
+    },
   );
 
+  Movie.associate = function(models) {
+    Movie.belongsToMany(models.User, { through: 'UserMovie', foreignKey: 'movieId' })
+  }
+  
   return Movie;
 };

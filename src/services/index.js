@@ -4,7 +4,9 @@ const signupService = require("./users");
 const moviesService = require("./movies");
 const userUpdateService = require("./users");
 const listMoviesService = require("./movies");
-const moviesUpdateService = require("./movies")
+const moviesUpdateService = require("./movies");
+const userVoteService = require("./users");
+const userRatingService = require("./users");
 
 module.exports = {
   authService,
@@ -14,4 +16,6 @@ module.exports = {
   userUpdateService,
   listMoviesService,
   moviesUpdateService,
+  userVoteService,
+  userRatingService,
 };

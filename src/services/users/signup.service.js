@@ -16,8 +16,9 @@ module.exports.signup = async (name, email, password) => {
         email: email, 
         password: password, 
         isAdmin: false,
-        created_at: new Date(),
-        updated_at: new Date(),
+        deletedAt: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     };
 
     usersRepository.create(user);
