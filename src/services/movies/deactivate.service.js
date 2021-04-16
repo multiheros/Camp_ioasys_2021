@@ -5,7 +5,6 @@ const { messages } = require("../../helpers");
 module.exports.deactivate = async (id) => {
     const movie = await moviesRepository.get(id);
 
-    console.log(movie);
     if(!movie) {
         throw {
             status: StatusCodes.NOT_FOUND,
