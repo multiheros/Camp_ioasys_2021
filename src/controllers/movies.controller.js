@@ -7,10 +7,10 @@ module.exports = {
     try {
       const { isAdmin } = req.user;
 
-      if(!isAdmin) {
+      if (!isAdmin) {
         return res.status(StatusCodes.UNAUTHORIZED).end();
       }
-      
+
       const schema = yup.object().shape({
         name: yup.string().required(),
         duration: yup.string().required(),
@@ -23,7 +23,12 @@ module.exports = {
       });
 
       const { name, duration, release, description } = req.body;
-      const response = await moviesService.register(name, duration, release, description);
+      const response = await moviesService.register(
+        name,
+        duration,
+        release,
+        description
+      );
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
       console.error(error);

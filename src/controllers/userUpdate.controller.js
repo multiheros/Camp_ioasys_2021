@@ -8,7 +8,7 @@ module.exports = {
       const schema = yup.object().shape({
         name: yup.string(),
         email: yup.string().email(),
-        password: yup.string(),  
+        password: yup.string(),
       });
 
       await schema.validate(req.body, {

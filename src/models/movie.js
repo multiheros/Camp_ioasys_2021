@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   const Movie = sequelize.define(
     "Movie",
@@ -9,28 +9,30 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.STRING,
       deletedAt: {
         type: DataTypes.DATE,
-        field: "deleted_at"
+        field: "deleted_at",
       },
       createdAt: {
         type: DataTypes.DATE,
-        field: "created_at"
+        field: "created_at",
       },
       updatedAt: {
         type: DataTypes.DATE,
-        field: "updated_at"
+        field: "updated_at",
       },
     },
     {
       tableName: "movies",
       paranoid: true,
-      timestamps: true
-
-    },
+      timestamps: true,
+    }
   );
 
-  Movie.associate = function(models) {
-    Movie.belongsToMany(models.User, { through: 'UserMovie', foreignKey: 'movieId' })
-  }
-  
+  Movie.associate = function (models) {
+    Movie.belongsToMany(models.User, {
+      through: "UserMovie",
+      foreignKey: "movieId",
+    });
+  };
+
   return Movie;
 };

@@ -13,5 +13,5 @@ router.use(isAuthorized);
 router.post("/register", moviesController.register);
 router.post("/update", moviesUpdateController.update);
 router.get("/deactivate", movieDeactivateController.deactivate);
-router.post("/reactivate", movieReactivateController.reactivate);
+router.get("/reactivate", movieReactivateController.reactivate);
 module.exports.movies = router;

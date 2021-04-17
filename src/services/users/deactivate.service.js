@@ -3,16 +3,16 @@ const { usersRepository } = require("../../repositories");
 const { messages } = require("../../helpers");
 
 module.exports.deactivate = async (id) => {
-    const user = await usersRepository.getById(id);
+  const user = await usersRepository.getById(id);
 
-    if(!user) {
-        throw {
-            status: StatusCodes.NOT_FOUND,
-            message: messages.notFound("user"),
-        };
+  if (!user) {
+    throw {
+      status: StatusCodes.NOT_FOUND,
+      message: messages.notFound("user"),
     };
+  }
 
-    usersRepository.destroy(id)
+  usersRepository.destroy(id);
 
-    return "Conta desativada com sucesso!";
-}
+  return "User deactivated successfully!";
+};

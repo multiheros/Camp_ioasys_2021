@@ -3,25 +3,34 @@ const { usersRepository } = require("../../repositories");
 const { messages } = require("../../helpers");
 
 module.exports.signup = async (name, email, password) => {
-    const Email = await usersRepository.get({ email });
-    if (Email) {
-        throw {
-            status: StatusCodes.CONFLICT,
-            message: messages.alreadyExists("email"),
-        };
-    }
+  let Email = await usersRepository.get({ email });
 
-    const user = {
-        name: name, 
-        email: email, 
-        password: password, 
-        isAdmin: false,
-        deletedAt: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+  if (Email) {
+    throw {
+      status: StatusCodes.CONFLICT,
+      message: messages.alreadyExists("email"),
     };
+  } else {
+    Email = await usersRepository.getDeativate({ email });
+    if (Email) {
+      throw {
+        status: StatusCodes.CONFLICT,
+        message: messages.deactivate("email"),
+      };
+    }
+  }
 
-    usersRepository.create(user);
+  const user = {
+    name: name,
+    email: email,
+    password: password,
+    isAdmin: false,
+    deletedAt: null,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
 
-    return "Conta criada com sucesso!";
-}
+  usersRepository.create(user);
+
+  return "Conta criada com sucesso!";
+};

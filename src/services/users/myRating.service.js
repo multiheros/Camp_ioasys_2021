@@ -1,7 +1,6 @@
 const { userMovieRepository } = require("../../repositories");
 
 module.exports.myRating = async (options) => {
-  console.log(options);
   const query = {};
 
   if (options.name && options.name !== "") {

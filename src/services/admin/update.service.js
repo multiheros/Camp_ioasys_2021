@@ -15,8 +15,9 @@ module.exports.update = async (id, body) => {
   const { email } = body;
 
   if (email) {
-    const Email = await usersRepository.get({ email });
-    if (Email) {
+    const newEmail = await usersRepository.get({ email });
+
+    if (newEmail) {
       throw {
         status: StatusCodes.CONFLICT,
         message: messages.alreadyExists("email"),

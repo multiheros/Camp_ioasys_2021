@@ -13,7 +13,7 @@ module.exports = {
       await schema.validate(req.body, {
         stripUnknown: true,
       });
-      
+
       const { id } = req.user;
       const response = await userVoteService.vote(id, req.body);
       return res.status(StatusCodes.OK).json(response);

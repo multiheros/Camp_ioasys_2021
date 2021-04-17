@@ -6,7 +6,7 @@ module.exports = {
     try {
       const { isAdmin } = req.user;
 
-      if(!isAdmin) {
+      if (!isAdmin) {
         return res.status(StatusCodes.UNAUTHORIZED).end();
       }
 

@@ -11,5 +11,5 @@ module.exports = {
   signup,
   vote,
   myRating,
-  deactivate
+  deactivate,
 };

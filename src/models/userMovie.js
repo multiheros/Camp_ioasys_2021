@@ -1,35 +1,35 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   const UserMovie = sequelize.define(
     "UserMovie",
     {
       userId: {
         type: DataTypes.INTEGER,
-        field: "user_id"
+        field: "user_id",
       },
       movieId: {
         type: DataTypes.INTEGER,
-        field: "movie_id"
+        field: "movie_id",
       },
       vote: DataTypes.INTEGER,
       createdAt: {
         type: DataTypes.DATE,
-        field: "created_at"
+        field: "created_at",
       },
       updatedAt: {
         type: DataTypes.DATE,
-        field: "updated_at"
+        field: "updated_at",
       },
     },
     {
       tableName: "users_movies",
-      timestamps: true
-    },
+      timestamps: true,
+    }
   );
 
-  UserMovie.associate = function(models) {
-    UserMovie.belongsTo(models.User, { foreignKey: 'userId'})
-    UserMovie.belongsTo(models.Movie, { foreignKey: 'movieId'})
+  UserMovie.associate = function (models) {
+    UserMovie.belongsTo(models.User, { foreignKey: "userId" });
+    UserMovie.belongsTo(models.Movie, { foreignKey: "movieId" });
   };
 
   return UserMovie;

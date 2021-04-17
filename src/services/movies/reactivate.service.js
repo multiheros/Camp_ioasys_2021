@@ -3,16 +3,25 @@ const { moviesRepository } = require("../../repositories");
 const { messages } = require("../../helpers");
 
 module.exports.reactivate = async (id) => {
-    const movie = await moviesRepository.getDeativate(id);
-    
-    if(!movie) {
-        throw {
-            status: StatusCodes.NOT_FOUND,
-            message: messages.notFound("user"),
-        };
+  let movie = await moviesRepository.get({ id });
+
+  if (movie) {
+    throw {
+      status: StatusCodes.CONFLICT,
+      message: messages.alreadyExists("movie"),
     };
+  }
 
-    moviesRepository.restore(movie);
+  movie = await moviesRepository.getDeativate({ id });
 
-    return "Filme restaurado com sucesso";
-}
+  if (!movie) {
+    throw {
+      status: StatusCodes.NOT_FOUND,
+      message: messages.notFound("movie"),
+    };
+  }
+
+  moviesRepository.restore(movie);
+
+  return "Movie successfully reactivated!";
+};

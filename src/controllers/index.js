@@ -1,15 +1,16 @@
 const usersController = require("./users.controller");
-const userUpdateController = require("./userUpdate.controller")
+const userUpdateController = require("./userUpdate.controller");
 const authController = require("./auth.controller");
 const signupController = require("./signup.controller");
-const moviesController = require("./movies.controller")
-const listMoviesController = require("./listMovies.controller")
-const moviesUpdateController = require("./moviesUpdate.controller")
-const userVoteController = require("./userVote.controller")
+const moviesController = require("./movies.controller");
+const listMoviesController = require("./listMovies.controller");
+const moviesUpdateController = require("./moviesUpdate.controller");
+const userVoteController = require("./userVote.controller");
 const userRatingController = require("./userRating.controller");
 const userDeactivateController = require("./userDeactivate.Controller");
 const movieDeactivateController = require("./movieDeactivateController");
 const movieReactivateController = require("./movieReactivate.Controller");
+const adminUpdateController = require("./adminUpdate.Controller");
 
 module.exports = {
   usersController,
@@ -23,5 +24,6 @@ module.exports = {
   userRatingController,
   userDeactivateController,
   movieDeactivateController,
-  movieReactivateController
+  movieReactivateController,
+  adminUpdateController,
 };

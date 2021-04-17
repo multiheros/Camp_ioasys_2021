@@ -9,6 +9,10 @@ module.exports = {
   create: (params) => UserMovie.create(params),
   update: (vote) => vote.save(),
   destroy: (id) => UserMovie.destroy({ where: { id } }),
-  get: (one, two) => UserMovie.findOne({ where: { [Op.and]: [{ userId: one }, { movieId: two }]}}),
-  myRating: (query) => UserMovie.findAndCountAll({ where: query, include: Movie })
+  get: (idUser, idMovie) =>
+    UserMovie.findOne({
+      where: { [Op.and]: [{ userId: idUser }, { movieId: idMovie }] },
+    }),
+  myRating: (query) =>
+    UserMovie.findAndCountAll({ where: query, include: Movie }),
 };
