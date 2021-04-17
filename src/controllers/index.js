@@ -9,6 +9,7 @@ const userVoteController = require("./userVote.controller")
 const userRatingController = require("./userRating.controller");
 const userDeactivateController = require("./userDeactivate.Controller");
 const movieDeactivateController = require("./movieDeactivateController");
+const movieReactivateController = require("./movieReactivate.Controller");
 
 module.exports = {
   usersController,
@@ -21,5 +22,6 @@ module.exports = {
   userVoteController,
   userRatingController,
   userDeactivateController,
-  movieDeactivateController
+  movieDeactivateController,
+  movieReactivateController
 };
