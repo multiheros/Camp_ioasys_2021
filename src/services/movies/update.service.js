@@ -28,5 +28,5 @@ module.exports.update = async (id, body) => {
 
   moviesRepository.update(movie);
 
-  return "Filme alterado com sucesso!";
+  return "Movie updated successfully!";
 };

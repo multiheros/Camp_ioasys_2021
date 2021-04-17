@@ -1,17 +1,13 @@
 const router = require("express").Router();
 const { moviesController } = require("../controllers");
-const { listMoviesController } = require("../controllers");
-const { moviesUpdateController } = require("../controllers");
-const { movieDeactivateController } = require("../controllers");
-const { movieReactivateController } = require("../controllers");
 const { isAuthorized } = require("../middlewares");
 
-router.get("/", listMoviesController.list);
+router.get("/", moviesController.list);
 
 router.use(isAuthorized);
 
 router.post("/register", moviesController.register);
-router.post("/update", moviesUpdateController.update);
-router.get("/deactivate", movieDeactivateController.deactivate);
-router.get("/reactivate", movieReactivateController.reactivate);
+router.post("/update", moviesController.update);
+router.get("/deactivate", moviesController.deactivate);
+router.get("/reactivate", moviesController.reactivate);
 module.exports.movies = router;

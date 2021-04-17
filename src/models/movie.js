@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       duration: DataTypes.STRING,
       release: DataTypes.DATE,
+      director: DataTypes.STRING,
+      category: DataTypes.STRING,
       description: DataTypes.STRING,
       deletedAt: {
         type: DataTypes.DATE,

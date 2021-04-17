@@ -1,7 +1,6 @@
 const { moviesRepository } = require("../../repositories");
 
 module.exports.list = async (options) => {
-  console.log(options);
   const query = {};
 
   if (options.name && options.name !== "") {

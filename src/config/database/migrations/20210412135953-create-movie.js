@@ -17,6 +17,12 @@ module.exports = {
       release: {
         type: Sequelize.DATE,
       },
+      director: {
+        type: Sequelize.STRING,
+      },
+      category: {
+        type: Sequelize.STRING,
+      },
       description: {
         type: Sequelize.STRING,
       },

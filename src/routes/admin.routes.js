@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { adminUpdateController } = require("../controllers");
+const { adminController } = require("../controllers");
 const { isAuthorized } = require("../middlewares");
 
 router.use(isAuthorized);
 
-router.post("/update", adminUpdateController.update);
+router.post("/update", adminController.update);
 module.exports.admin = router;

@@ -1,5 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
-const { moviesUpdateService } = require("../services");
+const { adminService } = require("../services");
 const yup = require("yup");
 
 module.exports = {
@@ -13,16 +13,17 @@ module.exports = {
 
       const schema = yup.object().shape({
         name: yup.string(),
-        duration: yup.string(),
-        release: yup.string(),
-        description: yup.string(),
+        email: yup.string().email(),
+        password: yup.string(),
+        isAdmin: yup.boolean(),
       });
 
       await schema.validate(req.body, {
         stripUnknown: true,
       });
-      const { id } = req.body;
-      const response = await moviesUpdateService.update(id, req.body);
+      
+      const { id } = req.query;
+      const response = await adminService.update(id, req.body);
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
       console.error(error);

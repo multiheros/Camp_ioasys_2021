@@ -32,5 +32,5 @@ module.exports.signup = async (name, email, password) => {
 
   usersRepository.create(user);
 
-  return "Conta criada com sucesso!";
+  return "User successfully registered!";
 };

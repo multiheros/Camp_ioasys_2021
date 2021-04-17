@@ -2,8 +2,10 @@ const { StatusCodes } = require("http-status-codes");
 const { moviesRepository } = require("../../repositories");
 const { messages } = require("../../helpers");
 
-module.exports.register = async (name, duration, release, description) => {
+module.exports.register = async (body) => {
+  const { name, duration, release, director, category, description } = body;
   const Movie = await moviesRepository.get({ name });
+
   if (Movie) {
     throw {
       status: StatusCodes.CONFLICT,
@@ -15,6 +17,8 @@ module.exports.register = async (name, duration, release, description) => {
     name: name,
     duration: duration,
     release: release,
+    director: director,
+    category: category,
     description: description,
     isActivated: true,
     createdAt: new Date(),
@@ -23,5 +27,5 @@ module.exports.register = async (name, duration, release, description) => {
 
   moviesRepository.create(movie);
 
-  return "Filme inserido com sucesso!";
+  return "Movie inserted successfully!";
 };
