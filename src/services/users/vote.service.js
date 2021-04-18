@@ -5,7 +5,9 @@ const { userMovieRepository } = require("../../repositories");
 const { messages } = require("../../helpers");
 
 module.exports.vote = async (userId, movieId, body) => {
-  if ((body.vote < 0) | (body.vote > 4)) {
+  const { vote } = body;
+
+  if ((vote < 0) | (vote > 4)) {
     throw {
       status: StatusCodes.REQUESTED_RANGE_NOT_SATISFIABLE,
       message: messages.outRange("value"),
@@ -41,7 +43,7 @@ module.exports.vote = async (userId, movieId, body) => {
     const rate = {
       userId: userId,
       movieId: movieId,
-      vote: body.vote,
+      vote: vote,
       createdAt: new Date(),
       updatedAt: new Date(),
     };

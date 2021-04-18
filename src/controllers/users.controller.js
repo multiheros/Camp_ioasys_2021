@@ -80,6 +80,12 @@ module.exports = {
   },
   async vote(req, res) {
     try {
+      const { isAdmin } = req.user;
+
+      if (isAdmin) {
+        return res.status(StatusCodes.UNAUTHORIZED).end();
+      }
+
       const params = yup.object().shape({
         movieId: yup.number().required(),
       });

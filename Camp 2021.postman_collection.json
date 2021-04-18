@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "69c4a70b-0255-4883-9dad-abec70ac7951",
+		"name": "Camp 2021",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@ioasys.com\",\n    \"password\": \"12341234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signin"
+					]
+				},
+				"description": "Faz login de um usuário. Na body é necessario passar em formato json os campos \"email\" e \"password\" segue o exemplo abaixo:\n\n{\n    \"email\": \"algumEmail@gmail.com\",\n    \"password\": \"algumaSenha\"\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Listagem Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NjAwMTc4fQ.0_KuNcpPYoILi204oW6DcfwJ0rd3FO8skK_eVhIhWnA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Maria Madalena Pereira",
+							"disabled": true
+						}
+					]
+				},
+				"description": "listagem de Usuários, é necessario uma conta administradora para isso, após fazer o login é necessario criar uma \"Authorization\" juntamente de uma Bearer(token) na Headers."
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ana Maria Pinto\",\n    \"email\": \"anamp@gmail.com\",\n    \"password\": \"5678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signup"
+					]
+				},
+				"description": "Criação de usuário em geral, não é necessário nenhum tipo de autorização. É necessario passar 3 parametros no formato:\n\n{\n    \"name\": \"nome completo do usuário aqui\",\n    \"email\": \"email do usuário aqui\",\n    \"password\": \"senha do usuário\"\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Usuário",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWNhcmRvanJAZ21haWwuY29tIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYxODc2NjcyNX0.s1tVBZ1Td13ZXmD4TPgf0fstZivgCAuGOAByhYCO__M",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ricardo Madeira jr\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"update"
+					]
+				},
+				"description": "Atualização dos dados do próprio usuário, para isso você dever fazer login e adquirir uma token. Após isso é necessario criar um \"Authorization\" juntamente de uma Bearer(token) na Headers. Na body deve ser passado os parametros em formato json e as alterações disponiveis para alteração são: \"name\", \"email\" e \"password\", sendo possível escolher entre alterar somente um parametro ou todos de uma vez. Segue um exemplo dos parametros:\n\n{\n    \"name\": \"nome do usuario\",\n    \"email\": \"email do usuario\",\n    \"password\": \"senha do usuario\"\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Desativação Usuário",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWNhcmRvanJAZ21haWwuY29tIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYxODc2NjcyNX0.s1tVBZ1Td13ZXmD4TPgf0fstZivgCAuGOAByhYCO__M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/deactivate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"deactivate"
+					]
+				},
+				"description": "Desativação da conta do próprio usuário(lógica). É necessario logar com o usuário e obter uma token, após isto, é necessário criar uma \"Authorization\" e uma Bearer(token) na Headers. Com isso, a conta logada vai ser desativada."
+			},
+			"response": []
+		},
+		{
+			"name": "Avaliação Filme (vote)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzY3MzQ2fQ.aWyEARh6sL9F7zYB4GUdmNPRG_0SKgBwIIxqnkUUdrg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vote\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/vote?movieId=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"vote"
+					],
+					"query": [
+						{
+							"key": "movieId",
+							"value": "3"
+						}
+					]
+				},
+				"description": "Avaliação de um filme. Para isto é necessário primeiramente logar com usuário e obter uma token, após isso, deve-ser criar uma \"Authorization\" e uma Bearer(token) na Headers. Também é necessário criar uma \"key\" na query params com nome \"movieId\" e seu \"value\", que vai ser a id do filme que o usuário quer votar(a id é obtida através da collection \"Listagem Filmes\"). Por fim, na body é necessario passar um parametro de nome \"vote\" no formato json com o valor do voto do usuário que está entre o intervalo \"0 < voto > 4\". Exemplo da body:\n\n{\n    \"vote\": 2\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Minhas Avaliações",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJhbmFtcEBnbWFpbC5jb20iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjE4NzY3MjYwfQ.hchduphiDSQyOqSzMoclI7-W_s12ia-z7iSvouPWThY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/myRating",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"myRating"
+					]
+				},
+				"description": "Lista todos os filmes que o usuário avaliou, inclusive a nota de cada avalição. Para isto é necessário fazer o login e obter um token, após isto, deve-se criar uma \"Authorization\" e uma Bearer(token) na Headers."
+			},
+			"response": []
+		},
+		{
+			"name": "Listagem Filmes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Vingadores: Era de Ultron",
+							"disabled": true
+						},
+						{
+							"key": "director",
+							"value": "Russian brothers",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "Action",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Listagem de filmes com filtro. Caso queira listar todos filmes basta não adicionar nenhum parâmetro, agora caso queria filtrar por parametro é necessário passar alguns parâmetros pela query params. Nessa collection é possivel adicionamos até 3 parametros, sendo as \"keys\": name, director, category e suas respectivas \"values\"."
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Filmes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzY3MzQ2fQ.aWyEARh6sL9F7zYB4GUdmNPRG_0SKgBwIIxqnkUUdrg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Vingadores: Ultimato\",\n    \"duration\": \"3h:1min\",\n    \"release\": \"2019-04-25\",\n    \"director\": \"Russian brothers\",\n    \"category\": \"Action\",\n    \"description\": \"Após os eventos devastadores de Vingadores: Guerra Infinita , o universo está em ruínas, e com a ajuda de aliados os Vingadores se reúnem para desfazer as ações de Thanos e restaurar a ordem.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/movies/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"register"
+					]
+				},
+				"description": "Cadastro de filmes, somente o usuário admin pode fazer esse cadastro. É necessario uma header \"Authorization\" com a Bearer(token). \n\nNa body é necessario passar 4 parâmetros no seguinte formato:\n\n{\n    \"name\": \"nome do filme\", \n    \"duration\": \"duração do filme, ex: 2h:48min\", \n    \"release\": \"data de lançamento no formato data\", \n    \"description\": \"descrição do filme\",\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Filmes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzY3MzQ2fQ.aWyEARh6sL9F7zYB4GUdmNPRG_0SKgBwIIxqnkUUdrg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"duration\": \"3h:2min\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/movies/update?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				},
+				"description": "Atualização de um filme. Para isto, é necessário login de um administrador e obter sua token, em sequência, criar uma \"Authorization\" e uma Bearer(token) na headers. Na params deve-se criar uma \"key\" de nome id e passar o 'id' do filme na \"value\" que deseja alterar(a id pode ser obtida pela collection \"Listagem Filmes\"). Na body deve ser passados os parametros para alteração no formato json, sendo eles: \"name\", \"duration\", \"release\", \"director\", \"category\" e \"description\", é possível alteração de somente um parâmetro ou todos de uma vez. Um exemplo da body:\n\n{\n    \"name\": \"nome do filme\",\n    \"duration\": \"duração do filme, ex: 2h:25min\",\n    \"release\": \"data de lançamento no formato data\",\n    \"director\": \"nome do diretor\",\n    \"category\": \"nome da categoria do filme\",\n    \"description\": \"sinopse ou breve resumo do filme\"\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Desativação Filme",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzY3MzQ2fQ.aWyEARh6sL9F7zYB4GUdmNPRG_0SKgBwIIxqnkUUdrg"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/movies/deactivate?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"deactivate"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Desativação de um filme(lógica). Para isto, é necessário fazer login em uma conta adminstradora e obter sua token, depois deve-se criar uma \"Authorization\" e uma Bearer(token) na Headers. Na query params é necessário cria ume \"key\" de nome id e passar essa \"id\" na value(a id é obtida através da collection \"Listagem Filmes\")."
+			},
+			"response": []
+		},
+		{
+			"name": "Restaura Filme Desativado",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzY3MzQ2fQ.aWyEARh6sL9F7zYB4GUdmNPRG_0SKgBwIIxqnkUUdrg"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/movies/reactivate?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"reactivate"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Reativação de um filme. Para isto, é necessário fazer login em uma conta adminstradora e obter sua token, depois deve-se criar uma \"Authorization\" e uma Bearer(token) na Headers. Na query params é necessário cria ume \"key\" de nome id e passar essa \"id\" na value(a id é obtida através da collection \"Listagem Filmes\")."
+			},
+			"response": []
+		},
+		{
+			"name": "Detalhes Filme",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/movies/details?name=Vingadores: Ultimato",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"movies",
+						"details"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Vingadores: Ultimato"
+						}
+					]
+				},
+				"description": "Lista todos os detalhes do filme incluido a média de votos. Para isto, é necessário criar uma query params de nome \"name\" e colocar no campo \"value\" o nome do filme que queria verificar esses detalhes."
+			},
+			"response": []
+		},
+		{
+			"name": "Avaliações Filme",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzY1NzcyfQ.mBAzDMf_FYSxQ9dNyL8L0NNbQgvRaRtn6KmeEEoN3xI"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/admin/rating?movieId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"rating"
+					],
+					"query": [
+						{
+							"key": "movieId",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Lista os filmes e suas avaliações com filtro por filme. É necessário login em um usuário administrador e obter seu token, com isto, deve-se criar uma \"Authorization\" e uma Bearer(token) na Headers. E também uma query params com uma \"key\" de nome movieId e uma id na \"value\"(essa id é obtida através da collection \"Listagem Filmes\"), caso não queria filtrar as avaliações por filme basta desmarcar a query params."
+			},
+			"response": []
+		},
+		{
+			"name": "Atualização Usuário (admin) ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzY3MzQ2fQ.aWyEARh6sL9F7zYB4GUdmNPRG_0SKgBwIIxqnkUUdrg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"isAdmin\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/admin/update?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				},
+				"description": "Atualização de dados de usuário, inclusive transformar um usuário normal em administrador. Para isto, é necessario logar em um conta administradora e obter sua token, depois deve-se criar uma \"Authorization\" e um Bearer(token) na Headers. Na query params é necessário criar uma \"key\" de nome id e passar essa \"id\" como value(a id pode ser obtida na collection \"Listagem Usuarios\").\nNa body é possível alterar os seguintes parâmetros no formato json: \"name\", \"email\", \"password\" e \"isAdmin\", sendo possível alterar somente um desses parâmetros ou todos de uma vez. Um exemplo da body:\n\n{\n    \"name\": \"nome do usuário\",\n    \"email\": \"email do usuário\",\n    \"password\": \"senha do usuário\",\n    \"isAdmin\": \"true, caso queira esse usuário como admin\"\n}"
+			},
+			"response": []
+		}
+	]
+}

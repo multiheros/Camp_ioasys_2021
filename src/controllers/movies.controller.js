@@ -46,7 +46,7 @@ module.exports = {
       }
 
       const params = yup.object().shape({
-        id: yup.number().require(),
+        id: yup.number().required(),
       });
 
       await params.validate(req.query, {

@@ -12,14 +12,14 @@ module.exports = {
   destroy: (id) => UserMovie.destroy({ where: { id } }),
   avg: (movieId) =>
     UserMovie.findAll({
-      where: {movieId},
+      where: { movieId },
       attributes: ["movieId", [fn("AVG", col("vote")), "avgRating"]],
-      group: ['UserMovie.movie_id'],
+      group: ["UserMovie.movie_id"],
     }),
   get: (idUser, idMovie) =>
     UserMovie.findOne({
       where: { [Op.and]: [{ userId: idUser }, { movieId: idMovie }] },
     }),
-  myRating: (id) =>
-    UserMovie.findAndCountAll({ where: {id}, include: Movie }),
+  rating: (id) =>
+    UserMovie.findAndCountAll({ where: id, include: Movie }),
 };

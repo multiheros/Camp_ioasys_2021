@@ -3,26 +3,26 @@ const { moviesRepository } = require("../../repositories");
 const { messages } = require("../../helpers");
 
 module.exports.update = async (id, body) => {
-  const idExist = await moviesRepository.get({ id });
+  const movie = await moviesRepository.getById(id);
 
-  if (!idExist) {
+  if (!movie) {
     throw {
       status: StatusCodes.NOT_FOUND,
       message: messages.notFound("id"),
     };
   }
 
-  const { name } = body;
-  const movieExist = await moviesRepository.get({ name });
+  if (body.name && body.name !== "") {
+    const { name } = body;
+    const checkName = await moviesRepository.get({ name });
 
-  if (movieExist) {
-    throw {
-      status: StatusCodes.CONFLICT,
-      message: messages.alreadyExists("name"),
-    };
+    if (checkName) {
+      throw {
+        status: StatusCodes.CONFLICT,
+        message: messages.alreadyExists("name"),
+      };
+    }
   }
-
-  const movie = await moviesRepository.get(id);
 
   Object.assign(movie, body);
 

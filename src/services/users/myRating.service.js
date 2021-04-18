@@ -1,9 +1,7 @@
 const { userMovieRepository } = require("../../repositories");
 
-module.exports.myRating = async (id) => {
-  const query = {};
-
-  const { count, rows } = await userMovieRepository.myRating(id);
+module.exports.myRating = async (userId) => {
+  const { count, rows } = await userMovieRepository.rating({ userId });
 
   return {
     metadata: {
