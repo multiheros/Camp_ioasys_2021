@@ -23,5 +23,5 @@ module.exports.reactivate = async (id) => {
 
   moviesRepository.restore(movie);
 
-  return "Movie successfully reactivated!";
+  return "Movie successfully restored!";
 };

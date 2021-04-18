@@ -3,7 +3,7 @@ const { usersService } = require("../services");
 const yup = require("yup");
 
 module.exports = {
-   async list(req, res) {
+  async list(req, res) {
     try {
       const { isAdmin } = req.user;
 
@@ -80,8 +80,15 @@ module.exports = {
   },
   async vote(req, res) {
     try {
-      const schema = yup.object().shape({
+      const params = yup.object().shape({
         movieId: yup.number().required(),
+      });
+
+      await params.validate(req.query, {
+        stripUnknown: true,
+      });
+
+      const schema = yup.object().shape({
         vote: yup.number().required(),
       });
 
@@ -89,8 +96,11 @@ module.exports = {
         stripUnknown: true,
       });
 
-      const { id } = req.user;
-      const response = await usersService.vote(id, req.body);
+      const response = await usersService.vote(
+        req.user.id,
+        req.query.movieId,
+        req.body
+      );
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
       console.error(error);
@@ -105,8 +115,7 @@ module.exports = {
   },
   async myRating(req, res) {
     try {
-      const { id } = req.user;
-      const response = await usersService.myRating({ id });
+      const response = await usersService.myRating(req.user.id);
 
       if (!response || response.data.length === 0) {
         return res.status(StatusCodes.NO_CONTENT).end();

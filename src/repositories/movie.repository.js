@@ -1,4 +1,5 @@
 const { Movie } = require("../models");
+const { Op } = require("sequelize");
 
 module.exports = {
   list: (query) => Movie.findAndCountAll(query),

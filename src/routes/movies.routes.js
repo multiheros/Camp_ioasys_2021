@@ -3,6 +3,7 @@ const { moviesController } = require("../controllers");
 const { isAuthorized } = require("../middlewares");
 
 router.get("/", moviesController.list);
+router.get("/details", moviesController.details);
 
 router.use(isAuthorized);
 

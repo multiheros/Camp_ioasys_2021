@@ -142,19 +142,50 @@ module.exports = {
   },
   async list(req, res) {
     try {
-      const { name } = req.query;
-      const response = await moviesService.list({ name });
+      const schema = yup.object().shape({
+        name: yup.string(),
+        director: yup.string(),
+        category: yup.string(),
+      });
 
-      if (!response || response.data.length === 0) {
-        return res.status(StatusCodes.NO_CONTENT).end();
-      }
+      await schema.validate(req.query, {
+        stripUnknown: true,
+      });
 
+      const response = await moviesService.list(req.query);
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return res
-        .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
-        .json(error.messages);
+        .status(
+          error.name == "ValidationError"
+            ? StatusCodes.UNPROCESSABLE_ENTITY
+            : error.status || StatusCodes.INTERNAL_SERVER_ERROR
+        )
+        .json(error.message);
+    }
+  },
+  async details(req, res) {
+    try {
+      const schema = yup.object().shape({
+        name: yup.string().required(),
+      });
+
+      await schema.validate(req.query, {
+        stripUnknown: true,
+      });
+
+      const response = await moviesService.details(req.query.name);
+      return res.status(StatusCodes.OK).json(response);
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(
+          error.name == "ValidationError"
+            ? StatusCodes.UNPROCESSABLE_ENTITY
+            : error.status || StatusCodes.INTERNAL_SERVER_ERROR
+        )
+        .json(error.message);
     }
   },
 };
